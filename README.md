@@ -1,2 +1,0 @@
-# djangotest
-Django test.
