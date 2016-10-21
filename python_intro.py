@@ -131,5 +131,22 @@ for i in range(1, 6):
 
 >>> from django.contrib.auth.models import User
 >>> User.objects.all()
-me = User.objects.get(username='ola')
+>>> me = User.objects.get(username='ola')
 >>> Post.objects.create(author=me, title='Sample title', text='Test')
+
+# Filtrar objetos
+
+>>> Post.objects.filter(author=me)
+>>> Post.objects.filter(title__contains='title')
+
+>>> from django.utils import timezone
+>>> Post.objects.filter(published_date__lte=timezone.now())
+
+>>> post = Post.objects.get(id=1)
+>>> post.publish()
+>>> Post.objects.filter(published_date__lte=timezone.now())
+
+# Ordenando objetos
+
+>>> Post.objects.order_by('created_date')
+>>> Post.objects.order_by('-created_date')
